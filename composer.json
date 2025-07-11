@@ -13,6 +13,7 @@
         "intervention/image": "^3.11",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "reyesoft/crypto-qr": "^2.0",
         "spatie/laravel-tags": "^4.10"
     },
     "require-dev": {

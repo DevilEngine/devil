@@ -29,12 +29,17 @@ class User extends Authenticatable
 
     public function purchases()
     {
-        return $this->hasMany(\App\Models\DevilCoinPurchase::class, 'user_id', 'id');
+        return $this->hasMany(\App\Models\DevilcoinPurchase::class, 'user_id', 'id');
     }
 
     public function sites()
     {
         return $this->hasMany(\App\Models\Site::class);
+    }
+
+    public function swaps()
+    {
+        return $this->hasMany(\App\Models\Swap\SwapTransaction::class);
     }
 
     public function trustVotes()
@@ -50,7 +55,7 @@ class User extends Authenticatable
     public function earnedDevilCoins(): int
     {
 
-        return $this->reviews()->where('approved', true)->count() * 5
+        return $this->reviews()->where('approved', true)->count() * 3
              + $this->sites()->where('status', 'active')->count() * 10
              + $this->trustVotes()->count()
              + $this->purchases()->where('status','confirmed')->sum('amount');
@@ -232,7 +237,7 @@ class User extends Authenticatable
 
     public function reputation(): int
     {
-        $earned = $this->reviews()->where('approved', true)->count() * 5
+        $earned = $this->reviews()->where('approved', true)->count() * 3
                 + $this->sites()->where('status', 'active')->count() * 10
                 + $this->trustVotes()->count()
                 + $this->purchases()->where('status','confirmed')->sum('amount');
@@ -249,7 +254,7 @@ class User extends Authenticatable
         $votesCount   = $this->trustVotes()->count();
         $purchases    = $this->purchases()->where('status','confirmed')->sum('amount');
     
-        $score = ($sitesCount * 10) + ($reviewsCount * 5) + ($votesCount * 1) + ($purchases * 1);
+        $score = ($sitesCount * 10) + ($reviewsCount * 3) + ($votesCount * 1) + ($purchases * 1);
         $this->reputation = $score;
     
         // Free homepage feature
@@ -265,7 +270,10 @@ class User extends Authenticatable
         $this->save();
     }
       
-
+    public function devilcoinWithdrawals()
+    {
+        return $this->hasMany(DevilcoinWithdrawal::class);
+    }
 
     public static function generateMnemonic()
     {

@@ -27,7 +27,7 @@ class DevilcoinPurchaseController extends Controller
         ]);
 
         $user = auth()->user();
-        $package = DevilcoinPackage::findOrFail($request->package_id);
+        $package = DevilcoinPackage::where('active', true)->findOrFail($request->package_id);
 
         // Créer la transaction en BDD
         $purchase = DevilcoinPurchase::create([

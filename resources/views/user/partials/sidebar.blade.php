@@ -8,6 +8,12 @@
   <a href="{{ route('devilcoins.history') }}" class="list-group-item list-group-item-action {{ request()->routeIs('devilcoins.history') ? 'active' : '' }}">
     💳 DevilCoin Purchases
   </a>
+  <a href="{{ route('devilcoin.usage.all') }}" class="list-group-item list-group-item-action {{ request()->routeIs('devilcoin.usage.all') ? 'active' : '' }}">
+    💸 DevilCoin Usage
+  </a>
+  <a href="{{ route('user.withdrawals.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('user.withdrawals.*') ? 'active' : '' }}">
+    💸 Withdraw DevilCoins
+  </a>
   <a href="{{ route('banners.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('banners.*') ? 'active' : '' }}">
     📢 My Banners
   </a>
@@ -28,9 +34,6 @@
   </a>
   <a href="{{ route('follows.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('follows.index') ? 'active' : '' }}">
     📌 Followed Sites
-  </a>
-  <a href="{{ route('devilcoin.usage.all') }}" class="list-group-item list-group-item-action {{ request()->routeIs('devilcoin.usage.all') ? 'active' : '' }}">
-    💸 DevilCoin Usage
   </a>
   <a href="{{ route('user.profile.edit') }}" class="list-group-item list-group-item-action {{ request()->routeIs('user.profile.*') ? 'active' : '' }}">
     ✏️ Edit Profile

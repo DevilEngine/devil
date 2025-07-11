@@ -5,7 +5,27 @@
 @section('content')
         <!-- Page content-->
         <div class="container">
-
+            @if(auth()->check())
+                <div class="alert alert-success d-flex align-items-center gap-3 shadow-sm border-start border-4 border-success mt-2" role="alert">
+                    <span style="font-size: 1.5rem;">🤑</span>
+                    <div>
+                        <strong>Earn Monero (XMR) by contributing!</strong><br>
+                        🏗 Add websites, 🛡 Trust vote, 💬 Leave reviews — your reputation earns you <strong>DevilCoins</strong>.<br>
+                        💸 Convert them into real Monero and withdraw anytime!
+                    </div>
+                </div>
+            @endif
+            @guest
+                <div class="alert alert-primary d-flex align-items-center gap-3 shadow-sm border-start border-4 border-primary" role="alert">
+                    <span style="font-size: 1.5rem;">👀</span>
+                    <div>
+                        <strong>Did you know?</strong><br>
+                        Members earn <strong>DevilCoins</strong> by submitting sites and participating.<br>
+                        💰 These can be converted into <strong>Monero (XMR)</strong>. 
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-success ms-2">Join now</a>
+                    </div>
+                </div>
+            @endguest
             <div class="row">
                 <div class="col-lg-12">
                     @if($featuredSites->count())

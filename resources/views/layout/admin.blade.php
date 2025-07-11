@@ -79,6 +79,17 @@
           👥Users
         </a>
 
+        @php
+            $pendingWithdrawals = \App\Models\DevilcoinWithdrawal::where('status', 'pending')->count();
+        @endphp
+
+        <a href="{{ route('admin.withdrawal.index') }}" class="{{ request()->routeIs('admin.withdrawal.*') ? 'active' : '' }}">
+          💸 Withdrawals
+          @if($pendingWithdrawals > 0)
+              <span class="badge bg-danger ms-1">{{ $pendingWithdrawals }}</span>
+          @endif
+        </a>
+
         <a href="{{ route('admin.categories.index') }}" class="{{ request()->is('admin/categories*') ? 'active' : '' }}">
             🗂️Categories
         </a>

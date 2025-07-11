@@ -12,6 +12,15 @@ Route::view('/ranks', 'ranks')->name('ranks.info');
 
 Route::get('/tags/{slug}', [App\Http\Controllers\PublicController::class, 'tag'])->name('tag.show');
 
+Route::get('/swap', [App\Http\Controllers\Swap\SwapController::class, 'showExchangeForm'])->name('swap.start');
+Route::post('/swap/starting', [App\Http\Controllers\Swap\SwapController::class, 'start'])->name('swap.estimate');
+Route::get('/swap/confirming', [App\Http\Controllers\Swap\SwapController::class, 'showConfirmingForm'])->name('swap.confirming');
+Route::get('/swap/show/{token}', [App\Http\Controllers\Swap\SwapController::class, 'getExchange'])->name('swap.show');
+Route::get('/swap/show/finish/{token}', [App\Http\Controllers\Swap\SwapController::class, 'showFinished'])->name('swap.finish');
+Route::post('/swap/create', [App\Http\Controllers\Swap\SwapController::class, 'createExchange'])->name('swap.create');
+Route::post('/swap/search', [App\Http\Controllers\Swap\SwapController::class, 'getExchangeBySearch'])->name('swap.search');
+Route::get('/swap/finish/{token}', [App\Http\Controllers\Swap\SwapController::class, 'showFinished'])->name('swap.final');
+
 Route::get('/website/{slug}', [App\Http\Controllers\PublicController::class, 'showSite'])->name('site.show');
 
 // LOGIN/REGISTER/CAPTCHA ROUTE
@@ -81,6 +90,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/devilcoins/history', [\App\Http\Controllers\User\DevilcoinPurchaseController::class, 'history'])->name('devilcoins.history');
     Route::get('/devilcoins/payment/{purchase}', [\App\Http\Controllers\User\DevilcoinPurchaseController::class, 'paymentPage'])->name('devilcoins.payment');
 
+    Route::get('/withdrawals', [\App\Http\Controllers\User\DevilcoinWithdrawController::class, 'index'])->name('user.withdrawals.index');
+    Route::get('/withdrawals/create', [\App\Http\Controllers\User\DevilcoinWithdrawController::class, 'create'])->name('user.withdrawals.create');
+    Route::post('/withdrawals', [\App\Http\Controllers\User\DevilcoinWithdrawController::class, 'store'])->name('user.withdrawals.store');
+
     Route::post('/sites/{site}/feature', [\App\Http\Controllers\User\SiteController::class, 'featureMultiple'])->name('sites.feature.multi');
     //Route::post('/site/{site:slug}/claim-request', [\App\Http\Controllers\User\SiteClaimController::class, 'store'])->name('site.claim.request');
 
@@ -133,4 +146,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('mastermind')->group(function ()
     Route::get('/claims/{claim}', [\App\Http\Controllers\Admin\SiteClaimAdminController::class, 'show'])->name('admin.claims.show');
     Route::post('/claims/{claim}/approve', [App\Http\Controllers\Admin\SiteClaimAdminController::class, 'approve'])->name('admin.claims.approve');
     Route::post('/claims/{claim}/reject', [App\Http\Controllers\Admin\SiteClaimAdminController::class, 'reject'])->name('admin.claims.reject');
+
+    Route::get('/withdrawals', [App\Http\Controllers\Admin\DevilcoinWithdrawController::class, 'index'])->name('admin.withdrawal.index');
+    Route::post('/withdrawal/approve/{id}', [App\Http\Controllers\Admin\DevilcoinWithdrawController::class, 'approve'])->name('admin.withdrawal.approve');
+    Route::post('/withdrawal/reject/{id}', [App\Http\Controllers\Admin\DevilcoinWithdrawController::class, 'reject'])->name('admin.withdrawal.reject');
+
+    Route::get('/swap/all', [App\Http\Controllers\Swap\SwapAdminController::class, 'all'])->name('admin.swap.all');
 });

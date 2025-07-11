@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('title', $user->username)
+@section('meta_description', "View the profile of $user->username on Devil Engine. See their reviews, reputation, and contributions to the community.")
 
 @section('content')
     <div class="container mt-4">

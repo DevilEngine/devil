@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('title', '🔍 Search filter')
+@section('meta_description', "Browse websites matching $query on Devil Engine. Filter by category, tags, or darknet status to find the best results.")
 
 @section('content')
     <div class="container mt-4">

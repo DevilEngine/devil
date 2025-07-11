@@ -44,7 +44,6 @@ class SiteController extends Controller
             'mirror_2' => 'nullable|url|max:255',
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
-            'status' => 'required|in:active,inactive,scam',
             'logo' => 'nullable|image|max:2048'
         ]);
 

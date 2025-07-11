@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="@yield('meta_description', 'Carnet d’adresses crypto – Explorez les meilleures plateformes.')">
+        <meta name="description" content="@yield('meta_description', 'Explore and rate privacy-focused websites on the darknet and clearnet. Discover trusted platforms, read user reviews, and track reputation with DevilCoins.')">
         <meta name="author" content="" />
         <title>@yield('title') – 👿 Devil Engine</title>
         <!-- Favicon-->
@@ -24,6 +24,7 @@
                 <a class="navbar-brand instru-font mb-2" href="/">Devil Engine | 👿🤘💰</a>
                 <div class="navbar-collapse">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row">
+                        <li class="nav-item"><a class="btn btn-success me-2" href="{{ route('swap.start') }}">👿 Devil Swap 🚀</a></li>
                         @guest
                             <li class="nav-item"><a class="btn btn-outline-success me-2" href="{{ route('login') }}">💻 Login</a></li>
                             <li class="nav-item"><a class="btn btn-success" href="{{ route('register') }}">🫵 Register</a></li>
@@ -136,6 +137,7 @@
                         🎖️ Ranks
                     </a>
                 </p>
+                <p>📨 devilengine_666@protonmail.com</p>
             </div>
             <div class="col-md-4">
                 <p class="float-end mb-1">

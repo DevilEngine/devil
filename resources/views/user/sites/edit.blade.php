@@ -64,15 +64,6 @@
                         value="{{ old('tags', $site->tags->pluck('name')->implode(',')) }}">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">📊 Status</label>
-                    <select name="status" class="form-select" required>
-                        <option value="active" {{ $site->status === 'active' ? 'selected' : '' }}>✅ Active</option>
-                        <option value="inactive" {{ $site->status === 'inactive' ? 'selected' : '' }}>⛔ Inactive</option>
-                        <option value="scam" {{ $site->status === 'scam' ? 'selected' : '' }}>🚨 Scam</option>
-                    </select>
-                </div>
-
                 @if(auth()->user()->free_feature_home > 0 && !$site->featured)
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" name="use_feature_bonus" id="use_feature_bonus">

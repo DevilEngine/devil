@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title', '🏷️ Tag: '.$tag->name)
-@section('meta_description', "Websites with the tag {$tag->name}")
+@section('meta_description', "Explore the best websites related to $tag->name. Find trusted platforms and resources tagged with $tag->name on Devil Engine.")
 
 @section('content')
     <div class="container mt-4">

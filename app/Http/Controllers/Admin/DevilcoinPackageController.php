@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\DevilCoinPackage;
+use App\Models\DevilcoinPackage;
 
 class DevilcoinPackageController extends Controller
 {
@@ -14,7 +14,7 @@ class DevilcoinPackageController extends Controller
      */
     public function index()
     {
-        $packs = DevilcoinPackage::where('active', true)->orderBy('amount')->get();
+        $packs = DevilcoinPackage::orderBy('amount')->get();
         return view('admin.devilcoin.index', compact('packs'));
     }
 
@@ -41,17 +41,8 @@ class DevilcoinPackageController extends Controller
         DevilcoinPackage::create($data);
     
         return redirect()
-            ->route('admin.devilcoin-packages.index')
+            ->route('devilcoin-packages.index')
             ->with('success', 'Package created successfully.');
-    }
-    
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -88,6 +79,8 @@ class DevilcoinPackageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DevilcoinPackage::whereId($id)->delete();
+
+        return redirect()->back()->with('success','Package removed with success !');
     }
 }

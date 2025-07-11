@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('sites:clean-expired-features')->hourly();
+Schedule::command('app:swap-transaction-check')->everyFiveMinutes();
 
 Artisan::command('inspire', function () {
     /** @var ClosureCommand $this */

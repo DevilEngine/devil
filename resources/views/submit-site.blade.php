@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">🖼 Logo (optional)</label>
+                    <label class="form-label">🖼 Logo (required)</label>
                     <input type="file" name="logo" class="form-control">
                 </div>
 

@@ -382,15 +382,23 @@ class PublicController extends Controller
     public function submitSite(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'url' => 'required|url|max:255',
+            'name' => 'required|string|max:255|unique:sites,name',
+            'url' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:sites,url',
+                'regex:/^https:\/\/(?!www\.)[^\s\/]+(\.[^\s\/]+)+$/i',
+            ],
             'mirror_1' => 'nullable|url|max:255',
             'mirror_2' => 'nullable|url|max:255',
             'description' => 'nullable|string|max:1000',
             'category_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array|max:6', // ✅ max 6 tags
             'tags.*' => 'string',
-            'logo' => 'nullable|image|max:2048',
+            'logo' => 'required|image|max:2048',
+        ], [
+            'url.regex' => 'URL need to start with https:// and do not contain www. and do not finish with /',
         ]);
 
         $validated['user_id'] = auth()->id();
@@ -415,7 +423,7 @@ class PublicController extends Controller
         $pendingLimit = auth()->user()->hasExtendedSubmissionLimit() ? 3 : 1;
 
         $pendingCount = auth()->user()->sites()
-            ->where('status', 'pending') // ou status = "inactive" si c’est ta convention
+            ->where('status', 'inactive') // ou status = "inactive" si c’est ta convention
             ->count();
 
         if ($pendingCount >= $pendingLimit) {

@@ -9,6 +9,7 @@ use App\Models\Site;
 use App\Models\Category;
 
 use Auth;
+use Storage;
 
 class SiteController extends Controller
 {

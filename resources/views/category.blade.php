@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('title', '📁 '.$category->name)
-@section('meta_description', $category->description)
+@section('meta_description', "Discover trusted websites in the category $category->name. Browse platforms reviewed by the community and ranked by trust score on Devil Engine.")
 
 @section('content')
     <div class="container mt-4">
